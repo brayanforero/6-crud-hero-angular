@@ -1,6 +1,11 @@
 <h1>Heroes</h1>
 <hr />
 <div class="row justify-content-center">
+  <div class="col-12">
+    <a routerLink="/hero/new" class="btn btn-primary"
+      >Agregar <i class="fas fa-plus"></i
+    ></a>
+  </div>
   <div
     *ngIf="heroes.length > 0"
     class="
@@ -21,8 +26,7 @@
             <div class="fas fa-hands"></div>
           </th>
           <th>
-            ¿Esta viv<i class="fas fa-heart"></i>
-            ?
+            <i class="fas fa-heart"></i>
           </th>
           <th>
             Tools
@@ -47,10 +51,10 @@
             </span>
           </td>
           <td [style.gap.rem]="0.75" class="d-flex justify-content-center">
-            <button class="btn-sm btn-primary">
+            <a [routerLink]="['/hero/', h.id]" class="btn-sm btn-primary">
               Editar <i class="fas fa-edit"></i>
-            </button>
-            <button class="btn-sm btn-danger">
+            </a>
+            <button (click)="removeHero(i, h.id)" class="btn-sm btn-danger">
               Borrar <i class="fas fa-trash"></i>
             </button>
           </td>

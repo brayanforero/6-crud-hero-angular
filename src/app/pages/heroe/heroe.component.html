@@ -1,1 +1,74 @@
-<p>heroe works!</p>
+<h1>Agregar Heroe</h1>
+<hr />
+<div class="row justify-content-center">
+  <div class="col-12">
+    <a routerLink="/heroes" class="btn btn-primary"
+      >Agregar <i class="fas fa-arrow-left"></i
+    ></a>
+  </div>
+  <div class="col-4">
+    <form autocomplete="off" #formHero="ngForm" (ngSubmit)="add(formHero)">
+      <div class="form-group mb-3">
+        <label for="">ID:</label>
+        <input
+          [(ngModel)]="hero.id"
+          name="id"
+          disabled
+          class="form-control"
+          type="text"
+          placeholder="Firebase ID"
+        />
+        <small class="text-muted">Este campo es auto generado</small>
+      </div>
+      <div class="form-group mb-3">
+        <label for="">Nombre:</label>
+        <input
+          [(ngModel)]="hero.name"
+          #name="ngModel"
+          name="name"
+          class="form-control"
+          type="text"
+          required
+          minlength="5"
+          maxlength="30"
+          [class.is-invalid]="name.invalid && name.touched"
+          [disabled]="isSending"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="">Poder:</label>
+        <input
+          #skill="ngModel"
+          [(ngModel)]="hero.skill"
+          name="skill"
+          class="form-control"
+          type="text"
+          required
+          [class.is-invalid]="skill.invalid && skill.touched"
+          [disabled]="isSending"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <button
+          type="button"
+          class="btn"
+          (click)="hero.alive = !hero.alive"
+          [ngClass]="{ 'btn-success': hero.alive, 'btn-danger': !hero.alive }"
+        >
+          {{ hero.alive ? "Vivo" : "Muerto" }}
+        </button>
+      </div>
+
+      <div class="form-group mb-3">
+        <button [disabled]="isSending" type="submit" class="btn btn-primary">
+          <i
+            *ngIf="isSending"
+            class="fas fa-spinner"
+            [class.fa-spin]="isSending"
+          ></i>
+          {{ !isSending ? "Agregar" : "Salvando" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

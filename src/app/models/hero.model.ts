@@ -1,5 +1,5 @@
 export class HeroModel {
-  id: string = '';
+  id?: string = '';
   name: string = '';
   skill: string = '';
   alive: boolean = true;

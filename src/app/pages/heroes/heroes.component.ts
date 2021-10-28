@@ -13,8 +13,20 @@ export class HeroesComponent implements OnInit {
   constructor(private heroService: HeroService) {}
 
   ngOnInit(): void {
+    this.loadHeroes();
+  }
+
+  removeHero(index: number, id: string = '') {
+    this.heroService.deleteHeroe(id).subscribe((resp) => {
+      this.heroes.splice(index, 1);
+    });
+  }
+
+  loadHeroes() {
+    this.loading = true;
     this.heroService.getHeroes().subscribe((resp) => {
       this.heroes = resp;
+      this.loading = false;
     });
   }
 }
